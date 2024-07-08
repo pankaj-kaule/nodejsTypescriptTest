@@ -22,4 +22,23 @@ export class EventController {
             return res.status(500).json({ success: false, message: 'Server error' });
         }
     }
+
+
+    static getEventById(req: Request, res: Response): Response<ApiResponse<Event>> {
+        try {
+            const eventId = req.params.id; 
+            console.log({eventId})
+            const event = EventService.getEventById(eventId);
+
+            if (!event) {
+                return res.status(404).json({ success: false, message: 'Event not found' });
+            }
+
+            return res.status(200).json({ success: true, message: 'Event retrieved successfully', data: event });
+        } catch (error) {
+            console.error('Error retrieving event:', error);
+            return res.status(500).json({ success: false, message: 'Server error' });
+        }
+    }
+
 }
