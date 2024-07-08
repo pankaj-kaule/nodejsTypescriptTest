@@ -1,12 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import eventRoutes from './routes/eventRoutes';
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7071;
 
 app.use(bodyParser.json());
 
+
+app.use('/events', eventRoutes);
 
 
 app.listen(port, () => {
