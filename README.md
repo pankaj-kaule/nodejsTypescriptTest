@@ -37,4 +37,5 @@ The project structure follows a typical MVC (Model-View-Controller) architecture
    git clone https://github.com/pankaj-kaule/nodejsTypescriptTest
 
 2. run project 
-        npm start
+   ```bash
+   npm start
