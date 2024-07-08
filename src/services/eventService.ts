@@ -19,11 +19,45 @@ export class EventService {
     }
 
 
+
+
+
       static getEventById(eventId: string): Event | undefined {
         // Replace with actual data fetching logic (e.g., database query)
         const event = this.events.find(event => event.id === eventId);
         return event;
     }
 
+    static updateEvent(eventId: string, updatedEvent: Event): Event | null {
+        const index = this.events.findIndex(event => event.id === eventId);
+        if (index !== -1) {
+            this.events[index] = { ...updatedEvent, id: eventId };
+            return this.events[index];
+        }
+        return null;
+    }
+
+
+    static deleteEventById(eventId: string): Event | null {
+        const index = this.events.findIndex(event => event.id === eventId);
+        if (index !== -1) {
+            const deletedEvent = this.events.splice(index, 1)[0];
+            return deletedEvent;
+        }
+        return null;
+    }
+
+    static listEvents(eventName?: string, organizer?: string): Event[] {
+        let filteredEvents = this.events;
+
+        if (eventName) {
+            filteredEvents = filteredEvents.filter(event => event.eventName.toLowerCase().includes(eventName.toLowerCase()));
+        }
+        if (organizer) {
+            filteredEvents = filteredEvents.filter(event => event.organizer.toLowerCase().includes(organizer.toLowerCase()));
+        }
+
+        return filteredEvents;
+    }
     
 }
