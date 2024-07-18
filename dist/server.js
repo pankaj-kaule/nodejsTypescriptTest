@@ -9,7 +9,7 @@ const eventRoutes_1 = __importDefault(require("./routes/eventRoutes"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 7071;
 app.use(body_parser_1.default.json());
-app.use('/events', eventRoutes_1.default);
+app.use("/events", eventRoutes_1.default);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
